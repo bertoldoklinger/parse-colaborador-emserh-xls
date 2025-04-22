@@ -40,12 +40,6 @@ def process_xls(input_file, output_file):
     df.to_csv(output_file, index=False)
     print(f"Arquivo processado com sucesso. Resultado salvo em {output_file}")
 
-def update_on_api(output_file):
-    url = "http://192.168.176.14:6338/colaboradores/upload"
-    with open(output_file, "rb") as f:
-        response = post(url, files={"file": f})
-    print(f"Colaboradores sincronizados!:{response.text}")
-
 date_atual = date.today()
 output_file = f"colaboradores_emserh_{date_atual.day if date_atual.day >= 10 else f'0{date_atual.day}'}_{date_atual.month if date_atual.month >= 10 else f'0{date_atual.month}'}_{date_atual.year}.csv"
 
